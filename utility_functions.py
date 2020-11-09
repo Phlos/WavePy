@@ -1,7 +1,7 @@
 from numba import jit
 import numpy as np
 
-from class_stuff import Grid, VectorThing
+from WavePyClasses import Grid, VectorThing
 
 @jit
 def find_nearest(array, value):

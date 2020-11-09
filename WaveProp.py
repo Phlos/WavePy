@@ -360,7 +360,7 @@ def run_waveprop(
 
     # check some shizzle
     if verbose:
-        print('Lx, Lz   = {:.1f}, {:.1f}'.format(Lx, Lz))
+        print('Lx, Lz   = {:.1f}, {:.1f}'.format(grid.Lx, grid.Lz))
         print('dx, dz    = {:.1f}, {:.1f} m'.format(
             grid.dx, grid.dz))
         print('nx, nz    = {:d}, {:d}'.format(
