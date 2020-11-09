@@ -11,10 +11,10 @@ from numba import jit
 
 import copy
 
-from class_stuff import \
+from WavePyClasses import \
     Grid, Model, Kernel, WavePropField, VectorThing, \
     Source, Receiver
-from utility_functions_using_classes_jit import find_nearest, compute_indices
+from utility_functions import find_nearest, compute_indices
 import wavefield_plotting_using_classes as wplot
 
 
