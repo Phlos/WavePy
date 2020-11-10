@@ -5,7 +5,6 @@ from typing import List, Union, Optional
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-import numba
 # from numba import autojit
 from numba import jit
 

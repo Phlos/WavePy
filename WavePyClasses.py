@@ -595,6 +595,7 @@ class Kernel(Model):
         cmaks = None,
         colour_percentile=99.97,
         plot_Fresnel_zone = False,
+        verbose=False,
         show=True
     ):
 
@@ -660,7 +661,8 @@ class Kernel(Model):
                 velocity_field = vp,  # hardcoded
                 loc_s=loc_s, loc_r=loc_r, 
                 time_axis=source.time.t, 
-                stf=source.stf_directionless
+                stf=source.stf_directionless,
+                verbose=verbose
                 )
         
         for param, field, ax in zip(params, fields, axes):
@@ -678,8 +680,10 @@ class Kernel(Model):
             if plot_Fresnel_zone:
                 plot_Fresnel(
                     ax, loc_s, loc_r, w_f, 
+                    label="P-wave Fresnel zone",
                     units='km',
                     zorder=1000000000, color='k', linewidth=2, linestyle='--')
+                ax.legend()
 
         plt.subplots_adjust(hspace=0.35)
 
