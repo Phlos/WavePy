@@ -1,9 +1,15 @@
 # WavePy
 Basic seismic wave propagation code for teaching purposes (python based). With this code, you can:
 
-* run elastic seismic wavefield simulations, 
-* select data windows 
+* run elastic seismic wavefield simulations
+* select data windows
 * compute sensitivity kernels
+
+A quick demo is given in the `Quick_demo_WavePy.ipynb` Jupyter notebook, while there is also a more elaborate wave propagation practical notebook `Wave_propagation_practical.ipynb`. 
+
+You can launch this environment (and run the notebooks interactively) in a mybinder live environment:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Phlos/WavePy/HEAD)
 
 ## Visualisation functionality
 At each stage, visualisation functionality is included. 
