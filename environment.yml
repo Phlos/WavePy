@@ -1,0 +1,11 @@
+name: wavepy
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib=3.3.2
+  - numba=0.51.2
+  - numpy=1.19.4
+  - python=3.6
+  - time=1.8
+  - typing>=3.7.4.3
