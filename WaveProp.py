@@ -552,9 +552,12 @@ def run_waveprop(
 
                 # img.set_array(vx.ravel())
 
-                fig.canvas.draw()
+                # fig.canvas.draw_idle()
                 # fig.canvas.flush_events()
-                time.sleep(0.01)
+                # time.sleep(0.01)
+                plt.pause(0.01)
+
+
 
         else:
             progress_report_time = int(nt / 4)
