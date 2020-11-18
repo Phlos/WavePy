@@ -302,6 +302,10 @@ def run_waveprop(
         raise ValueError('simulation mode must be one of '+
               ', '.join(allowed_simulation_modes)
               )
+    if 'half_grid' not in kwargs.keys():
+        kwargs['half_grid'] = True
+    if 'plot_contours' not in kwargs.keys():
+        kwargs['plot_contours'] = True
 
     if verbose:
         print('Simulation mode: {}'.format(simulation_mode))
@@ -416,7 +420,6 @@ def run_waveprop(
             grid, vector_fields.vx, sources, receivers,
             title=title,
             cmaks=cmaks, ax=ax,draw=True,
-            half_grid=True, plot_contours=True,
             **kwargs,
             )
 
