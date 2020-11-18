@@ -725,6 +725,9 @@ def plot_field(
     title=None, colorbar=False, 
     cmaks=None, 
     ax=None, draw=True, updating=False,
+    half_grid=False, 
+    plot_contours=False, levels=30,
+    verbose=False,
     **kwargs
 ):
     
@@ -742,21 +745,39 @@ def plot_field(
     else:
         plt.cla()
 
-    if not title:
+    if not title and verbose:
         print('no plot title given')
 
     # plot any field
     X = grid.X / 1000.
     Z = grid.Z / 1000.
+    
+    if half_grid:
+        X = X[::2,::2]
+        Z = Z[::2, ::2]
+        field = field[::2,::2]
 
     if not ax:
         fig, ax = plt.subplots(1, figsize=(10,5))
 
-    if cmaks:
-        img = ax.pcolormesh(X,Z, field, shading='gouraud',
-                            vmin=-1*cmaks, vmax=cmaks, **kwargs)
+    if plot_contours:
+        if isinstance(levels, int):
+            levels = np.linspace(-cmaks, cmaks, levels)
+        if cmaks:
+            img = ax.contourf(
+                X,Z, field, levels, extend='both',
+                vmin=-1*cmaks, vmax=cmaks, **kwargs
+            )
+        else:
+            img = ax.contourf(
+                X, Z, field, levels, extend='both', **kwargs,
+            )
     else:
-        img = ax.pcolormesh(X,Z, field, shading='gouraud', **kwargs)
+        if cmaks:
+            img = ax.pcolormesh(X,Z, field, shading='gouraud',
+                                vmin=-1*cmaks, vmax=cmaks, **kwargs)
+        else:
+            img = ax.pcolormesh(X,Z, field, shading='gouraud', **kwargs)
 
     if sources:
         for src in sources:

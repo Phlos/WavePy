@@ -14,7 +14,8 @@ from WavePyClasses import \
     Grid, Model, Kernel, WavePropField, VectorThing, \
     Source, Receiver
 from utility_functions import find_nearest, compute_indices
-import wavefield_plotting_using_classes as wplot
+# import wavefield_plotting_using_classes as wplot
+from WavePyClasses import plot_field
 
 
 def calc_absbound(
@@ -256,7 +257,8 @@ def run_waveprop(
     plot_wavefield=False, 
     plot_wavefield_every=10,
     return_last_wavefield = None,
-    verbose=False, veryverbose=False
+    verbose=False, veryverbose=False,
+    **kwargs,
 ):
 
     '''
@@ -410,10 +412,13 @@ def run_waveprop(
         cmaks = prefac*np.max(src_amp)
 
         fig, ax = plt.subplots(1, figsize=(10,5))
-        _, ax, fig = wplot.plot_field(
+        _, ax, fig = plot_field(
             grid, vector_fields.vx, sources, receivers,
             title=title,
-            cmaks=cmaks, ax=ax,draw=True)
+            cmaks=cmaks, ax=ax,draw=True,
+            half_grid=True, plot_contours=True,
+            **kwargs,
+            )
 
     # initialise seismograms
     if simulation_mode == 'forward':
@@ -535,10 +540,12 @@ def run_waveprop(
                     title = '{} adjoint velocity field, t = {:.2f}'.format(plot_wavefield[1].upper(), it_fw*dt)
 
                 ax.cla()
-                wplot.plot_field(
+                plot_field(
                     grid, field, sources, receivers,
                     title=title,
-                    cmaks=cmaks, ax=ax,draw=True, updating=False)
+                    cmaks=cmaks, ax=ax,draw=True, updating=False,
+                    **kwargs
+                    )
 
                 # img.set_array(vx.ravel())
 
